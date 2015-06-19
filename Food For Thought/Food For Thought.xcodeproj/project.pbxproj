@@ -1,0 +1,487 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		5F251F481B3132DA00B6C196 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F251F471B3132DA00B6C196 /* LoginViewController.swift */; };
+		5F251F581B3138A400B6C196 /* FBSDKCoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F251F571B3138A400B6C196 /* FBSDKCoreKit.framework */; };
+		5F251F5A1B3138A900B6C196 /* FBSDKLoginKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F251F591B3138A900B6C196 /* FBSDKLoginKit.framework */; };
+		5F251F5C1B3139E700B6C196 /* FacebookSDK.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F251F5B1B3139E700B6C196 /* FacebookSDK.framework */; };
+		5F251F5E1B31F05A00B6C196 /* AddRecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F251F5D1B31F05A00B6C196 /* AddRecipeTableViewController.swift */; };
+		5F251F641B321C4000B6C196 /* NameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F251F631B321C4000B6C196 /* NameTableViewCell.swift */; };
+		5F6F6BDC1B2F7DBC007F8993 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6BDB1B2F7DBC007F8993 /* AppDelegate.swift */; };
+		5F6F6BE31B2F7DBC007F8993 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F6F6BE11B2F7DBC007F8993 /* Main.storyboard */; };
+		5F6F6BE51B2F7DBC007F8993 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F6F6BE41B2F7DBC007F8993 /* Assets.xcassets */; };
+		5F6F6BE81B2F7DBC007F8993 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F6F6BE61B2F7DBC007F8993 /* LaunchScreen.storyboard */; };
+		5F6F6BF21B2F88AD007F8993 /* RecipeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6BF11B2F88AD007F8993 /* RecipeCollectionViewController.swift */; };
+		5F6F6BF41B2F890B007F8993 /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6BF31B2F890B007F8993 /* RecipeCollectionViewCell.swift */; };
+		5F6F6BF61B2F8A0B007F8993 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6BF51B2F8A0B007F8993 /* Recipe.swift */; };
+		5F6F6BFC1B2FB649007F8993 /* SpecificRecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6BFB1B2FB649007F8993 /* SpecificRecipeTableViewController.swift */; };
+		5F6F6C001B2FD1AA007F8993 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6BFF1B2FD1AA007F8993 /* IngredientTableViewCell.swift */; };
+		5F6F6C021B308ED6007F8993 /* InstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6C011B308ED6007F8993 /* InstructionsTableViewCell.swift */; };
+		5F6F6C121B309E49007F8993 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C111B309E49007F8993 /* AudioToolbox.framework */; };
+		5F6F6C141B309E55007F8993 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C131B309E55007F8993 /* CFNetwork.framework */; };
+		5F6F6C161B309E6A007F8993 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C151B309E6A007F8993 /* CoreGraphics.framework */; };
+		5F6F6C181B309E73007F8993 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C171B309E73007F8993 /* CoreLocation.framework */; };
+		5F6F6C1A1B309E7E007F8993 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C191B309E7E007F8993 /* MobileCoreServices.framework */; };
+		5F6F6C1C1B309E89007F8993 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C1B1B309E89007F8993 /* QuartzCore.framework */; };
+		5F6F6C1E1B309E92007F8993 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C1D1B309E92007F8993 /* Security.framework */; };
+		5F6F6C201B309E9C007F8993 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C1F1B309E9C007F8993 /* StoreKit.framework */; };
+		5F6F6C221B309EA5007F8993 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C211B309EA5007F8993 /* SystemConfiguration.framework */; };
+		5F6F6C291B309F2A007F8993 /* Accounts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C281B309F2A007F8993 /* Accounts.framework */; };
+		5F6F6C2B1B309F30007F8993 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C2A1B309F30007F8993 /* Social.framework */; };
+		5F6F6C301B30A33E007F8993 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C2F1B30A33E007F8993 /* libz.1.dylib */; };
+		5F6F6C321B30A355007F8993 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C311B30A355007F8993 /* libsqlite3.dylib */; };
+		5F9B7A9B1B33AB090018827A /* NewAddRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9B7A9A1B33AB090018827A /* NewAddRecipe.swift */; };
+		5FAF82971B30AA6900E0D63D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FAF82961B30AA6900E0D63D /* Parse.framework */; };
+		5FAF82991B30AA6F00E0D63D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FAF82981B30AA6F00E0D63D /* Bolts.framework */; };
+		5FAF829B1B30AA7300E0D63D /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FAF829A1B30AA7300E0D63D /* ParseCrashReporting.framework */; };
+		5FAF829F1B30AA7F00E0D63D /* ParseFacebookUtilsV4.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FAF829E1B30AA7F00E0D63D /* ParseFacebookUtilsV4.framework */; };
+		5FAF82A11B30AA8300E0D63D /* ParseUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FAF82A01B30AA8300E0D63D /* ParseUI.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		5F251F441B31310D00B6C196 /* Food For Thought-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "Food For Thought-Bridging-Header.h"; path = "Food For Thought/Food For Thought-Bridging-Header.h"; sourceTree = "<group>"; };
+		5F251F471B3132DA00B6C196 /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		5F251F571B3138A400B6C196 /* FBSDKCoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKCoreKit.framework; path = ../../../Documents/FacebookSDK/FBSDKCoreKit.framework; sourceTree = "<group>"; };
+		5F251F591B3138A900B6C196 /* FBSDKLoginKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = FBSDKLoginKit.framework; path = ../../../Documents/FacebookSDK/FBSDKLoginKit.framework; sourceTree = "<group>"; };
+		5F251F5B1B3139E700B6C196 /* FacebookSDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = FacebookSDK.framework; sourceTree = "<group>"; };
+		5F251F5D1B31F05A00B6C196 /* AddRecipeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = AddRecipeTableViewController.swift; path = "Food For Thought/AddRecipeTableViewController.swift"; sourceTree = "<group>"; };
+		5F251F631B321C4000B6C196 /* NameTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NameTableViewCell.swift; path = "Food For Thought/NameTableViewCell.swift"; sourceTree = "<group>"; };
+		5F6F6BD81B2F7DBC007F8993 /* Food For Thought.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Food For Thought.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		5F6F6BDB1B2F7DBC007F8993 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = "Food For Thought/AppDelegate.swift"; sourceTree = "<group>"; };
+		5F6F6BE21B2F7DBC007F8993 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		5F6F6BE41B2F7DBC007F8993 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Assets.xcassets; path = "Food For Thought/Assets.xcassets"; sourceTree = "<group>"; };
+		5F6F6BE71B2F7DBC007F8993 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		5F6F6BE91B2F7DBC007F8993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Food For Thought/Info.plist"; sourceTree = "<group>"; };
+		5F6F6BF11B2F88AD007F8993 /* RecipeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeCollectionViewController.swift; path = "Food For Thought/RecipeCollectionViewController.swift"; sourceTree = "<group>"; };
+		5F6F6BF31B2F890B007F8993 /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeCollectionViewCell.swift; path = "Food For Thought/RecipeCollectionViewCell.swift"; sourceTree = "<group>"; };
+		5F6F6BF51B2F8A0B007F8993 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Recipe.swift; path = "Food For Thought/Recipe.swift"; sourceTree = "<group>"; };
+		5F6F6BFB1B2FB649007F8993 /* SpecificRecipeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpecificRecipeTableViewController.swift; path = "Food For Thought/SpecificRecipeTableViewController.swift"; sourceTree = "<group>"; };
+		5F6F6BFF1B2FD1AA007F8993 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientTableViewCell.swift; path = "Food For Thought/IngredientTableViewCell.swift"; sourceTree = "<group>"; };
+		5F6F6C011B308ED6007F8993 /* InstructionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InstructionsTableViewCell.swift; path = "Food For Thought/InstructionsTableViewCell.swift"; sourceTree = "<group>"; };
+		5F6F6C111B309E49007F8993 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		5F6F6C131B309E55007F8993 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		5F6F6C151B309E6A007F8993 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		5F6F6C171B309E73007F8993 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		5F6F6C191B309E7E007F8993 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		5F6F6C1B1B309E89007F8993 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		5F6F6C1D1B309E92007F8993 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		5F6F6C1F1B309E9C007F8993 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		5F6F6C211B309EA5007F8993 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		5F6F6C281B309F2A007F8993 /* Accounts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accounts.framework; path = System/Library/Frameworks/Accounts.framework; sourceTree = SDKROOT; };
+		5F6F6C2A1B309F30007F8993 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		5F6F6C2F1B30A33E007F8993 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = /usr/lib/libz.1.dylib; sourceTree = "<absolute>"; };
+		5F6F6C311B30A355007F8993 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.dylib; sourceTree = "<absolute>"; };
+		5F9B7A9A1B33AB090018827A /* NewAddRecipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewAddRecipe.swift; path = "Food For Thought/NewAddRecipe.swift"; sourceTree = "<group>"; };
+		5FAF82961B30AA6900E0D63D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../Downloads/parse-library-1/Parse.framework"; sourceTree = "<group>"; };
+		5FAF82981B30AA6F00E0D63D /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../Downloads/parse-library-1/Bolts.framework"; sourceTree = "<group>"; };
+		5FAF829A1B30AA7300E0D63D /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = "../../../Downloads/parse-library-1/ParseCrashReporting.framework"; sourceTree = "<group>"; };
+		5FAF829E1B30AA7F00E0D63D /* ParseFacebookUtilsV4.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseFacebookUtilsV4.framework; path = "../../../Downloads/parse-library-1/ParseFacebookUtilsV4.framework"; sourceTree = "<group>"; };
+		5FAF82A01B30AA8300E0D63D /* ParseUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseUI.framework; path = "../../../Downloads/parse-library-1/ParseUI.framework"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		5F6F6BD51B2F7DBC007F8993 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5FAF82971B30AA6900E0D63D /* Parse.framework in Frameworks */,
+				5FAF82991B30AA6F00E0D63D /* Bolts.framework in Frameworks */,
+				5FAF829B1B30AA7300E0D63D /* ParseCrashReporting.framework in Frameworks */,
+				5FAF829F1B30AA7F00E0D63D /* ParseFacebookUtilsV4.framework in Frameworks */,
+				5F251F581B3138A400B6C196 /* FBSDKCoreKit.framework in Frameworks */,
+				5FAF82A11B30AA8300E0D63D /* ParseUI.framework in Frameworks */,
+				5F6F6C321B30A355007F8993 /* libsqlite3.dylib in Frameworks */,
+				5F6F6C301B30A33E007F8993 /* libz.1.dylib in Frameworks */,
+				5F6F6C2B1B309F30007F8993 /* Social.framework in Frameworks */,
+				5F6F6C291B309F2A007F8993 /* Accounts.framework in Frameworks */,
+				5F251F5A1B3138A900B6C196 /* FBSDKLoginKit.framework in Frameworks */,
+				5F6F6C221B309EA5007F8993 /* SystemConfiguration.framework in Frameworks */,
+				5F6F6C201B309E9C007F8993 /* StoreKit.framework in Frameworks */,
+				5F6F6C1E1B309E92007F8993 /* Security.framework in Frameworks */,
+				5F6F6C1C1B309E89007F8993 /* QuartzCore.framework in Frameworks */,
+				5F6F6C1A1B309E7E007F8993 /* MobileCoreServices.framework in Frameworks */,
+				5F6F6C181B309E73007F8993 /* CoreLocation.framework in Frameworks */,
+				5F6F6C161B309E6A007F8993 /* CoreGraphics.framework in Frameworks */,
+				5F251F5C1B3139E700B6C196 /* FacebookSDK.framework in Frameworks */,
+				5F6F6C141B309E55007F8993 /* CFNetwork.framework in Frameworks */,
+				5F6F6C121B309E49007F8993 /* AudioToolbox.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		5F251F5F1B31F06700B6C196 /* My Recipes */ = {
+			isa = PBXGroup;
+			children = (
+				5F6F6BF11B2F88AD007F8993 /* RecipeCollectionViewController.swift */,
+				5F6F6BF31B2F890B007F8993 /* RecipeCollectionViewCell.swift */,
+				5F6F6BF51B2F8A0B007F8993 /* Recipe.swift */,
+				5F6F6BFF1B2FD1AA007F8993 /* IngredientTableViewCell.swift */,
+				5F6F6C011B308ED6007F8993 /* InstructionsTableViewCell.swift */,
+				5F6F6BFB1B2FB649007F8993 /* SpecificRecipeTableViewController.swift */,
+			);
+			name = "My Recipes";
+			sourceTree = "<group>";
+		};
+		5F251F601B31F08A00B6C196 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				5F6F6BE41B2F7DBC007F8993 /* Assets.xcassets */,
+				5F6F6BDB1B2F7DBC007F8993 /* AppDelegate.swift */,
+				5F6F6BE61B2F7DBC007F8993 /* LaunchScreen.storyboard */,
+				5F6F6BE91B2F7DBC007F8993 /* Info.plist */,
+				5F251F441B31310D00B6C196 /* Food For Thought-Bridging-Header.h */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5F251F651B32431F00B6C196 /* Add Recipe */ = {
+			isa = PBXGroup;
+			children = (
+				5F251F631B321C4000B6C196 /* NameTableViewCell.swift */,
+				5F251F5D1B31F05A00B6C196 /* AddRecipeTableViewController.swift */,
+			);
+			name = "Add Recipe";
+			sourceTree = "<group>";
+		};
+		5F324B3B1B30AAB200D2D320 /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				5FAF82A01B30AA8300E0D63D /* ParseUI.framework */,
+				5FAF829E1B30AA7F00E0D63D /* ParseFacebookUtilsV4.framework */,
+				5FAF829A1B30AA7300E0D63D /* ParseCrashReporting.framework */,
+				5FAF82981B30AA6F00E0D63D /* Bolts.framework */,
+				5FAF82961B30AA6900E0D63D /* Parse.framework */,
+			);
+			name = Parse;
+			sourceTree = "<group>";
+		};
+		5F6F6BCF1B2F7DBC007F8993 = {
+			isa = PBXGroup;
+			children = (
+				5F9B7A9A1B33AB090018827A /* NewAddRecipe.swift */,
+				5F6F6BDA1B2F7DBC007F8993 /* Food For Thought */,
+				5F251F5F1B31F06700B6C196 /* My Recipes */,
+				5F251F651B32431F00B6C196 /* Add Recipe */,
+				5F251F601B31F08A00B6C196 /* Supporting Files */,
+				5F324B3B1B30AAB200D2D320 /* Parse */,
+				5F6F6C2D1B309F47007F8993 /* Other FrameWorks */,
+				5F6F6BD91B2F7DBC007F8993 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		5F6F6BD91B2F7DBC007F8993 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				5F6F6BD81B2F7DBC007F8993 /* Food For Thought.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		5F6F6BDA1B2F7DBC007F8993 /* Food For Thought */ = {
+			isa = PBXGroup;
+			children = (
+				5F6F6BE11B2F7DBC007F8993 /* Main.storyboard */,
+				5F251F471B3132DA00B6C196 /* LoginViewController.swift */,
+			);
+			path = "Food For Thought";
+			sourceTree = "<group>";
+		};
+		5F6F6C2D1B309F47007F8993 /* Other FrameWorks */ = {
+			isa = PBXGroup;
+			children = (
+				5F251F5B1B3139E700B6C196 /* FacebookSDK.framework */,
+				5F251F591B3138A900B6C196 /* FBSDKLoginKit.framework */,
+				5F251F571B3138A400B6C196 /* FBSDKCoreKit.framework */,
+				5F6F6C311B30A355007F8993 /* libsqlite3.dylib */,
+				5F6F6C2F1B30A33E007F8993 /* libz.1.dylib */,
+				5F6F6C2A1B309F30007F8993 /* Social.framework */,
+				5F6F6C281B309F2A007F8993 /* Accounts.framework */,
+				5F6F6C211B309EA5007F8993 /* SystemConfiguration.framework */,
+				5F6F6C1F1B309E9C007F8993 /* StoreKit.framework */,
+				5F6F6C1D1B309E92007F8993 /* Security.framework */,
+				5F6F6C1B1B309E89007F8993 /* QuartzCore.framework */,
+				5F6F6C191B309E7E007F8993 /* MobileCoreServices.framework */,
+				5F6F6C171B309E73007F8993 /* CoreLocation.framework */,
+				5F6F6C151B309E6A007F8993 /* CoreGraphics.framework */,
+				5F6F6C131B309E55007F8993 /* CFNetwork.framework */,
+				5F6F6C111B309E49007F8993 /* AudioToolbox.framework */,
+			);
+			name = "Other FrameWorks";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		5F6F6BD71B2F7DBC007F8993 /* Food For Thought */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5F6F6BEC1B2F7DBC007F8993 /* Build configuration list for PBXNativeTarget "Food For Thought" */;
+			buildPhases = (
+				5F6F6BD41B2F7DBC007F8993 /* Sources */,
+				5F6F6BD51B2F7DBC007F8993 /* Frameworks */,
+				5F6F6BD61B2F7DBC007F8993 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Food For Thought";
+			productName = "Food For Thought";
+			productReference = 5F6F6BD81B2F7DBC007F8993 /* Food For Thought.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		5F6F6BD01B2F7DBC007F8993 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Sagar Punhani";
+				TargetAttributes = {
+					5F6F6BD71B2F7DBC007F8993 = {
+						CreatedOnToolsVersion = 7.0;
+						DevelopmentTeam = F5W4L78R3F;
+					};
+				};
+			};
+			buildConfigurationList = 5F6F6BD31B2F7DBC007F8993 /* Build configuration list for PBXProject "Food For Thought" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 5F6F6BCF1B2F7DBC007F8993;
+			productRefGroup = 5F6F6BD91B2F7DBC007F8993 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				5F6F6BD71B2F7DBC007F8993 /* Food For Thought */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		5F6F6BD61B2F7DBC007F8993 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F6F6BE81B2F7DBC007F8993 /* LaunchScreen.storyboard in Resources */,
+				5F6F6BE51B2F7DBC007F8993 /* Assets.xcassets in Resources */,
+				5F6F6BE31B2F7DBC007F8993 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		5F6F6BD41B2F7DBC007F8993 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5F6F6BF41B2F890B007F8993 /* RecipeCollectionViewCell.swift in Sources */,
+				5F6F6C021B308ED6007F8993 /* InstructionsTableViewCell.swift in Sources */,
+				5F6F6C001B2FD1AA007F8993 /* IngredientTableViewCell.swift in Sources */,
+				5F9B7A9B1B33AB090018827A /* NewAddRecipe.swift in Sources */,
+				5F251F5E1B31F05A00B6C196 /* AddRecipeTableViewController.swift in Sources */,
+				5F251F641B321C4000B6C196 /* NameTableViewCell.swift in Sources */,
+				5F6F6BDC1B2F7DBC007F8993 /* AppDelegate.swift in Sources */,
+				5F251F481B3132DA00B6C196 /* LoginViewController.swift in Sources */,
+				5F6F6BFC1B2FB649007F8993 /* SpecificRecipeTableViewController.swift in Sources */,
+				5F6F6BF21B2F88AD007F8993 /* RecipeCollectionViewController.swift in Sources */,
+				5F6F6BF61B2F8A0B007F8993 /* Recipe.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		5F6F6BE11B2F7DBC007F8993 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F6F6BE21B2F7DBC007F8993 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		5F6F6BE61B2F7DBC007F8993 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				5F6F6BE71B2F7DBC007F8993 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			path = "Food For Thought";
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		5F6F6BEA1B2F7DBC007F8993 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		5F6F6BEB1B2F7DBC007F8993 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		5F6F6BED1B2F7DBC007F8993 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/SagarPunhani/Downloads/parse-library-1",
+					/Users/SagarPunhani/Documents/FacebookSDK,
+				);
+				INFOPLIST_FILE = "Food For Thought/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.usc.Food-For-Thought";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Food For Thought/Food For Thought-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		5F6F6BEE1B2F7DBC007F8993 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"/Users/SagarPunhani/Downloads/parse-library-1",
+					/Users/SagarPunhani/Documents/FacebookSDK,
+				);
+				INFOPLIST_FILE = "Food For Thought/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = "edu.usc.Food-For-Thought";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Food For Thought/Food For Thought-Bridging-Header.h";
+				SWIFT_OBJC_INTERFACE_HEADER_NAME = "";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		5F6F6BD31B2F7DBC007F8993 /* Build configuration list for PBXProject "Food For Thought" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F6F6BEA1B2F7DBC007F8993 /* Debug */,
+				5F6F6BEB1B2F7DBC007F8993 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5F6F6BEC1B2F7DBC007F8993 /* Build configuration list for PBXNativeTarget "Food For Thought" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5F6F6BED1B2F7DBC007F8993 /* Debug */,
+				5F6F6BEE1B2F7DBC007F8993 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 5F6F6BD01B2F7DBC007F8993 /* Project object */;
+}
