@@ -11,19 +11,17 @@ import Parse
 
 class SpecificRecipeTableViewController: UITableViewController {
     
-    var recipe: PFObject?
+    var recipe: PFObject? {
+        didSet {
+            updateUI()
+        }
+    }
+    var detailOpenend = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let imageData = recipe!["recipeImage"] as? PFFile {
-            imageData.getDataInBackgroundWithBlock({ (data, error) -> Void in
-                if (error == nil) {
-                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                        self.updateUI(data!)
-                    })
-                }
-            })
-        }
+        updateUI()
+        
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -31,6 +29,8 @@ class SpecificRecipeTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
+
+
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -165,23 +165,51 @@ class SpecificRecipeTableViewController: UITableViewController {
     }
     */
 
-    /*
+    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if segue.identifier == "Edit Recipe" {
+            if let nvc = segue.destinationViewController as? UINavigationController {
+                if let rtvc = nvc.visibleViewController as? AddRecipeTableViewController {
+                    rtvc.recipe = recipe!
+                    rtvc.editingRecipe = true
+                    rtvc.ingredientTable = recipe!["ingredients"] as! [PFObject]
+                    rtvc.sender = self
+                    NSUserDefaults.standardUserDefaults().setObject(recipe!["instructions"
+                        ] as! [String], forKey: Keys.userDefaultsKey)
+                }
+            }
+        }
     }
-    */
+    
+    func updateUI() {
+        title = recipe!["name"] as? String
+        if let imageData = recipe!["recipeImage"] as? PFFile {
+            imageData.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                if (error == nil) {
+                    dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                        self.updateUI(data!)
+                    })
+                }
+            })
+        }
+    }
+
     
     func updateUI(data: NSData) {
+        
+        //Edit Button
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit",style: .Plain, target: self, action: "editRecipe")
+        
         //image
         let recipeImage = UIImage(data: data)
         let aspectRatio = recipeImage!.size.height/recipeImage!.size.width
         let frame = CGRect(origin: CGPointZero, size: CGSize(width: self.view.bounds.size.width, height: self.view.bounds.size.width * aspectRatio))
-        let imageView = UIImageView(frame: frame)
-        imageView.image = recipeImage
+        let imageView = UIButton(frame: frame)
+        imageView.setImage(recipeImage, forState: .Normal)
+        imageView.addTarget(self, action: "showDetails:", forControlEvents: UIControlEvents.TouchUpInside)
         
         
         //view for details
@@ -220,6 +248,50 @@ class SpecificRecipeTableViewController: UITableViewController {
         self.tableView.estimatedRowHeight = 120
         self.tableView.rowHeight = UITableViewAutomaticDimension
         tableView.reloadData()
+    }
+    
+    
+    func editRecipe() {
+        performSegueWithIdentifier("Edit Recipe", sender: self)
+        
+    }
+    
+    func showDetails(sender: UIButton) {
+        if detailOpenend  == false {
+            detailOpenend = true
+
+            let backButton = UIButton(frame: CGRect(origin: CGPointZero, size: CGSize(width: sender.bounds.size.width, height: sender.bounds.size.height/4)))
+            let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
+            let detailText = UILabel(frame: backButton.frame)
+            detailText.textAlignment = .Center
+            let description = recipe!["description"] as! String
+            detailText.text = description
+            backButton.addSubview(detailText)
+            visualEffectView.frame = backButton.frame
+            visualEffectView.addSubview(backButton)
+            visualEffectView.center.y = 0 - visualEffectView.bounds.size.height/2
+            backButton.addTarget(self, action: "deselect:", forControlEvents: UIControlEvents.TouchUpInside)
+            sender.addSubview(visualEffectView)
+            backButton.backgroundColor = UIColor.clearColor()
+            UIView.animateWithDuration(0.2, delay: 0, options: UIViewAnimationOptions.CurveEaseIn, animations: { () -> Void in
+                visualEffectView.center.y = sender.bounds.midY - sender.bounds.size.height/2 + backButton.bounds.size.height/2
+                }, completion: nil)
+        }
+
+    }
+    
+    func deselect(sender: UIButton) {
+        detailOpenend = false
+        let superView = sender.superview
+        UIView.animateWithDuration(0.2, delay: 0, options: .CurveEaseIn, animations: { () -> Void in
+            superView!.center.y = -sender.bounds.size.height/2
+
+            }) { (bool) -> Void in
+                superView?.removeFromSuperview()
+
+        }
+        
+        
     }
 
 }

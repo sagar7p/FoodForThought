@@ -11,7 +11,17 @@ import Parse
 import MobileCoreServices
 
 class NameTableViewCell: UITableViewCell, UITextFieldDelegate {
-    var recipe: PFObject?
+    var cleared = false
+    var recipe: PFObject? {
+        didSet {
+            if let name = recipe!["name"] as? String {
+                nameLabel.text = name
+            }
+            if cleared {
+                nameLabel.text = ""
+            }
+        }
+    }
     @IBOutlet weak var nameLabel: UITextField! {
         didSet {
             nameLabel.becomeFirstResponder()
@@ -19,9 +29,8 @@ class NameTableViewCell: UITableViewCell, UITextFieldDelegate {
         }
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textFieldDidEndEditing(textField: UITextField) {
         recipe!["name"] = nameLabel.text
-        return true
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -34,16 +43,25 @@ class NameTableViewCell: UITableViewCell, UITextFieldDelegate {
 }
 
 class DescriptionTableViewCell: UITableViewCell, UITextFieldDelegate {
-    var recipe: PFObject?
+    var cleared = false
+    var recipe: PFObject? {
+        didSet {
+            if let description = recipe!["description"] as? String {
+                descriptionLabel.text = description
+            }
+            if cleared {
+                descriptionLabel.text = ""
+            }
+        }
+    }
     @IBOutlet weak var descriptionLabel: UITextField! {
         didSet {
             descriptionLabel.delegate = self
         }
     }
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textFieldDidEndEditing(textField: UITextField) {
         recipe!["description"] = descriptionLabel.text
-        return true
     }
     
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -55,20 +73,37 @@ class DescriptionTableViewCell: UITableViewCell, UITextFieldDelegate {
 }
 
 class ImageTableViewCell: UITableViewCell {
-    var recipe: PFObject?
+    var recipe: PFObject? {
+        didSet {
+            if let imageData = recipe!["recipeImage"] as? PFFile {
+                imageData.getDataInBackgroundWithBlock({ (data, error) -> Void in
+                    if (error == nil) {
+                        dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                            if self.foodImage == UIImage(named: "camera") {
+                                self.foodImage = UIImage(data: data!)
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    }
     
-    @IBOutlet weak var itemImageView: UIImageView!
+    
+    @IBOutlet weak var imageItemButton: UIButton!
     
     var foodImage: UIImage? {
         get {
-            return itemImageView.image
+            return imageItemButton.imageView?.image
         }
         set {
-            itemImageView.image = newValue
-            if let image = newValue {
-                let imageData = UIImageJPEGRepresentation(image, 1.0)
-                let imageFile: PFFile = PFFile(data: imageData!)
-                recipe!["recipeImage"] = imageFile
+            if newValue != nil {
+                imageItemButton.setImage(newValue, forState: .Normal)
+                if let image = newValue {
+                    let imageData = UIImageJPEGRepresentation(image, 1.0)
+                    let imageFile: PFFile = PFFile(data: imageData!)
+                    recipe!["recipeImage"] = imageFile
+                }
             }
         }
     }
@@ -77,14 +112,20 @@ class ImageTableViewCell: UITableViewCell {
 }
 
 class ServingTableViewCell: UITableViewCell {
-    
+    var cleared = false
     var recipe: PFObject? {
         didSet {
-            updateRecipe()
+            if let serving = recipe!["servingSize"] as? Int {
+                numberOfPeopleLabel.text = serving.description
+            }
+            if cleared {
+                 numberOfPeopleLabel.text = "0"
+            }
         }
     }
     
     @IBOutlet weak var numberOfPeopleLabel: UILabel!
+    @IBOutlet weak var stepper: UIStepper!
     
     @IBAction func addServing(sender: UIStepper) {
         sender.wraps = true
@@ -104,57 +145,58 @@ class ServingTableViewCell: UITableViewCell {
 }
 
 class TimeTableViewCell: UITableViewCell {
+    var cleared = false
     var recipe: PFObject? {
         didSet {
-            updateRecipe()
+            if let time = recipe!["time"] as? String {
+                timeLabel.text = time
+            }
+            if cleared {
+                timeLabel.text = "0 min"
+                stepper.value = 0
+            }
         }
     }
-    var timeLength = "min"
     @IBOutlet weak var timeLabel: UILabel!
     var timeUnit = true
 
     @IBOutlet weak var stepper: UIStepper!
     
-    @IBAction func timeChange(sender: UISegmentedControl) {
-        switch sender.selectedSegmentIndex {
-        case 0:
-            timeLength = "min"
-            timeUnit = true
-            timeLabel.text = "0"
-            stepper.value = 0
-        default:
-            timeLength = "Hr"
-            timeUnit = false
-            timeLabel.text = "0"
-            stepper.value = 0
-        }
-    }
-    
     @IBAction func makeTimeChange(sender: UIStepper) {
+        let timeTable = ["0 min", "5 min","10 min","15 min","20 min","30 min","40 min", "50 min", "1 hour", "1½ hours","2 hours", "2½ hours", "3 hours","3½ hours","4 hours"]
         sender.wraps = true
         sender.autorepeat = true
-        if timeUnit {
-            sender.maximumValue = 12
-            timeLabel.text = (Int(sender.value) * 5).description
-        }else {
-            sender.maximumValue = 4
-            timeLabel.text = Int(sender.value).description
-        }
+        sender.maximumValue = Double(timeTable.count - 1 )
+        timeLabel.text = timeTable[Int(sender.value)]
         updateRecipe()
         
     }
     
     func updateRecipe() {
-        recipe!["time"] = "\(timeLabel.text!) \(timeLength)"
+        recipe!["time"] = "\(timeLabel.text!)"
     }
     
 }
 
 class IngredientsTableViewCell: UITableViewCell, UITextFieldDelegate {
-    //var recipe: PFObject?
-    var ingredient: PFObject?
-    //var updated = false
+    var cleared = false
+    var ingredient: PFObject? {
+        didSet {
+            if let amount = ingredient!["amount"] as? String{
+                amountLabel.text = amount
+            }
+            if let item = ingredient!["item"] as? String {
+                itemLabel.text = item
+            }
+            if cleared {
+                amountLabel.text = "0"
+                itemLabel.text = ""
+                stepper.value = 0
+            }
+        }
+    }
     
+    @IBOutlet weak var stepper: UIStepper!
     @IBOutlet weak var itemLabel: UITextField! {
         didSet {
             itemLabel.delegate = self
@@ -162,9 +204,8 @@ class IngredientsTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     @IBOutlet weak var amountLabel: UILabel!
     
-    func textField(textField: UITextField, shouldChangeCharactersInRange range: NSRange, replacementString string: String) -> Bool {
+    func textFieldDidEndEditing(textField: UITextField) {
         updateIngredient()
-        return true
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {
@@ -174,7 +215,7 @@ class IngredientsTableViewCell: UITableViewCell, UITextFieldDelegate {
     }
     
     @IBAction func amountStepper(sender: UIStepper) {
-        var values = ["0","¼","½","¾","1","1¼","1½","1¾","2","2¼","2½","2¾","3","4","5","6","7","8","9","10"]
+        let values = ["0","¼","½","¾","1","1¼","1½","1¾","2","2¼","2½","2¾","3","4","5","6","7","8","9","10"]
         sender.wraps = true
         sender.autorepeat = true
         sender.maximumValue = Double(values.count - 1 )
@@ -190,8 +231,14 @@ class IngredientsTableViewCell: UITableViewCell, UITextFieldDelegate {
     
 }
 
-class InstructionTableViewCell: UITableViewCell, UITextViewDelegate {
-    var recipe: PFObject?
+class InstructionTableViewCell: UITableViewCell{
+    var instruction: String? {
+        didSet {
+            if instruction != nil {
+                instructionLabel.text = instruction
+            }
+        }
+    }
     var row: Int? {
         didSet {
             updateUI()
@@ -202,29 +249,18 @@ class InstructionTableViewCell: UITableViewCell, UITextViewDelegate {
     @IBOutlet weak var stepNumberLabel: UILabel!
     @IBOutlet weak var instructionLabel: UITextView! {
         didSet {
-            instructionLabel.delegate = self
+            observeTextField()
         }
     }
     
     func updateUI() {
+        instructionLabel.layer.cornerRadius = 5
+        instructionLabel.layer.borderColor = UIColor(red: 204.0/256.0, green: 204.0/256.0, blue: 204.0/256.0, alpha: 1.0).CGColor
+        instructionLabel.layer.borderWidth = 1
         if let currentRow = row {
             let attributedString = NSMutableAttributedString(string: "\(currentRow).", attributes: [NSFontAttributeName : UIFont.boldSystemFontOfSize(20)])
             instructionNumber.attributedText = attributedString
         }
-    }
-    
-    func textViewDidChange(textView: UITextView) {
-        updateInstruction()
-    }
-
-    
-    func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
-        if text == "\n" {
-            textView.resignFirstResponder()
-            updateInstruction()
-            return false
-        }
-        return true
     }
     
     func updateInstruction() {
@@ -245,6 +281,14 @@ class InstructionTableViewCell: UITableViewCell, UITextViewDelegate {
                 center.setObject([instructionItem], forKey: (Keys.userDefaultsKey))
             }
             
+        }
+    }
+    
+    func observeTextField() {
+        let center = NSNotificationCenter.defaultCenter()
+        let queue = NSOperationQueue.mainQueue()
+        center.addObserverForName(UITextViewTextDidEndEditingNotification, object: instructionLabel, queue: queue) { (notification) -> Void in
+            self.updateInstruction()
         }
     }
 

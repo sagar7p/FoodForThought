@@ -15,18 +15,17 @@ class RecipeCollectionViewController: UICollectionViewController, UICollectionVi
     
     var allRecipes: [PFObject] = [] {
         willSet {
-            if allRecipes.count != newValue.count {
-                collectionView!.reloadData()
-            }
+            collectionView!.reloadData()
         }
     }
     
     var currentRecipe = PFObject(className: "Recipe")
 
-    override func viewDidLoad() {
-        
-        super.viewDidLoad()
-        /*let user = PFUser.currentUser()
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        title = "Recipe Collection"
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: nil, action: nil)
+        let user = PFUser.currentUser()
         let query = PFQuery(className: "Recipe")
         query.whereKey("user", equalTo: user!)
         query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
@@ -35,7 +34,7 @@ class RecipeCollectionViewController: UICollectionViewController, UICollectionVi
                     self.allRecipes = objects! as! [PFObject]
                 })
             }
-        })*/
+        })
         
         /*let test1Recipe = PFObject(className: "Recipe")
         let test2Recipe = PFObject(className: "Recipe")
@@ -53,6 +52,7 @@ class RecipeCollectionViewController: UICollectionViewController, UICollectionVi
         ingredient2["item"] = "cheeses"
         test1Recipe["ingredients"] = [ingredient1,ingredient2]
         test1Recipe["instructions"] = ["Put in oven and be a god aabout it for like 15 min", "Once done make sure you let it cool for 40 hours nad also ahve some fun make sure all the pan is moistured do not let bugs in ravioli is so fun to make", "I really don't know what else to say except this is awesome make sure you server fore 10,000 people this is going to be great OMG"]
+        test1Recipe["description"] = "Super Delcious and AWesome"
         test1Recipe["user"] = user!
         test2Recipe["name"] = "Pasta"
         test2Recipe["time"] = "40 min"
@@ -63,6 +63,7 @@ class RecipeCollectionViewController: UICollectionViewController, UICollectionVi
         test2Recipe["ingredients"] = [ingredient1, ingredient2]
         test2Recipe["instructions"] = ["OMG this is so hot please make all electrical equipment are off and no is burning to death","Placing in boiling water for about 10 minutes and let cool so you dont destroy everything","This is really hot someone save me I can't do this anymore","This is really hot someone save me I can't do this anymore"]
         test2Recipe["user"] = user!
+        test2Recipe["description"] = "Can't wait to have more this is so tasty"
         allRecipes.append(test1Recipe)
         allRecipes.append(test2Recipe)
         test1Recipe.saveInBackground()
@@ -183,5 +184,6 @@ class RecipeCollectionViewController: UICollectionViewController, UICollectionVi
         let screenWidth = view.bounds.size.width
         return CGSize(width: screenWidth/2.5, height: screenWidth/2.5)
     }
+   
 
 }
