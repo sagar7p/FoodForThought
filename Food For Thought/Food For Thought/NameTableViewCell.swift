@@ -120,6 +120,7 @@ class ServingTableViewCell: UITableViewCell {
             }
             if cleared {
                  numberOfPeopleLabel.text = "0"
+                 stepper.value = 0
             }
         }
     }
