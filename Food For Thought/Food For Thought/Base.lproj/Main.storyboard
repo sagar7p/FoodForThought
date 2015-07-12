@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8121.17" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3Jx-zg-GSH">
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8101.14"/>
         <capability name="Alignment constraints to the first baseline" minToolsVersion="6.0"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
@@ -661,7 +660,7 @@
     <resources>
         <image name="add" width="25" height="25"/>
         <image name="black" width="100" height="100"/>
-        <image name="camera" width="25" height="25"/>
+        <image name="camera" width="100" height="100"/>
         <image name="fb-login" width="320" height="69"/>
         <image name="mini" width="25" height="25"/>
     </resources>
