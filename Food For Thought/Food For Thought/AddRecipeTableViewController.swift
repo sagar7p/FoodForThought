@@ -23,7 +23,7 @@ class AddRecipeTableViewController: UITableViewController, UIImagePickerControll
     var cleared = false
     var instructionTable: [String] {
         get {
-           return NSUserDefaults.standardUserDefaults().objectForKey(Keys.userDefaultsKey) as? [String] ?? ["Instruction"]
+           return NSUserDefaults.standardUserDefaults().objectForKey(Keys.userDefaultsKey) as? [String] ?? [""]
         }
     }
     var image: UIImage?
@@ -34,12 +34,6 @@ class AddRecipeTableViewController: UITableViewController, UIImagePickerControll
             NSUserDefaults.standardUserDefaults().removeObjectForKey(Keys.userDefaultsKey)
         }
         updateUI()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
     
     override func viewWillDisappear(animated: Bool) {
@@ -188,6 +182,8 @@ class AddRecipeTableViewController: UITableViewController, UIImagePickerControll
     
     }
     
+    
+    
 
     
     // Override to support editing the table view.
@@ -205,7 +201,6 @@ class AddRecipeTableViewController: UITableViewController, UIImagePickerControll
                 
             }
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-            //tableView.reloadData()
         } else if editingStyle == .Insert {
             // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
             if indexPath.section == 5 {
@@ -215,18 +210,17 @@ class AddRecipeTableViewController: UITableViewController, UIImagePickerControll
                 let defaults = NSUserDefaults.standardUserDefaults()
                 var listOfInstructions = defaults.objectForKey(Keys.userDefaultsKey) as? [String]
                 if listOfInstructions != nil {
-                    listOfInstructions!.append("Instruction")
+                    listOfInstructions!.append("")
                 }
                 else {
-                    listOfInstructions = instructionTable + ["Instruction"]
+                    listOfInstructions = instructionTable + [""]
                 }
                 defaults.setObject(listOfInstructions, forKey: Keys.userDefaultsKey)
                 
             }
             let newPath = NSIndexPath(forRow: indexPath.row + 1, inSection: indexPath.section)
             tableView.insertRowsAtIndexPaths([newPath], withRowAnimation: .Fade)
-            //tableView.reloadData()
-        }    
+        }
     }
     
     override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
@@ -334,7 +328,14 @@ class AddRecipeTableViewController: UITableViewController, UIImagePickerControll
     */
     
     func updateUI() {
+        //title
         title = "Make New Recipe"
+        
+        //change fonts
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Snell Roundhand", size: 25)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
+        
+        //check whether in editing phase or not
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
         if editingRecipe {
             title = "Editing Recipe"
         }
@@ -345,6 +346,8 @@ class AddRecipeTableViewController: UITableViewController, UIImagePickerControll
         else {
             self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Clear", style: .Plain, target: self, action: "clear")
         }
+        
+        //create footer view
         let viewFrame = UIView()
         viewFrame.center = CGPoint(x: self.view.center.x, y: self.view.bounds.size.height - 30)
         viewFrame.bounds.size = CGSize(width: self.view.bounds.width, height: 60)
@@ -363,6 +366,7 @@ class AddRecipeTableViewController: UITableViewController, UIImagePickerControll
         tableView.reloadData()
     }
     
+    //save recipes
     func save() {
         if (recipe["name"] == nil || recipe["description"] == nil || recipe["recipeImage"] != nil || recipe["servingSize"] != nil || recipe["time"] != nil || recipe["ingredients"] != nil || recipe["instructions"] != nil) && !editingRecipe  {
                 let alert = UIAlertController(title: "Error", message: "Please fill in all the blanks", preferredStyle: UIAlertControllerStyle.Alert)

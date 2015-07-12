@@ -11,12 +11,20 @@ import Parse
 
 class SpecificRecipeTableViewController: UITableViewController {
     
+    //current recipe
     var recipe: PFObject? {
         didSet {
             updateUI()
         }
     }
+    //showing details
     var detailOpenend = false
+    
+    //color
+    var color: UIColor? {
+        return self.navigationController?.navigationBar.barTintColor
+    }
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,8 +65,14 @@ class SpecificRecipeTableViewController: UITableViewController {
 
     }
 
-    
+    //load cells
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        var bgcolor: UIColor {
+            if indexPath.row % 2 == 0 {
+                return UIColor(red: 240/255, green: 240/255, blue: 250/255, alpha: 1.0)
+            }
+            return UIColor.whiteColor()
+        }
         switch indexPath.section {
         case 0:
             let cell = tableView.dequeueReusableCellWithIdentifier("ingredient", forIndexPath: indexPath) as! IngredientTableViewCell
@@ -73,6 +87,7 @@ class SpecificRecipeTableViewController: UITableViewController {
                 })
             }
             cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.backgroundColor = bgcolor
             return cell
         default:
             let cell = tableView.dequeueReusableCellWithIdentifier("instruction", forIndexPath: indexPath) as! InstructionsTableViewCell
@@ -80,6 +95,7 @@ class SpecificRecipeTableViewController: UITableViewController {
             cell.setOfInstructions = cellInstructions[indexPath.row]
             cell.row = indexPath.row + 1
             cell.selectionStyle = UITableViewCellSelectionStyle.None
+            cell.backgroundColor = bgcolor
             return cell
 
         }
@@ -89,13 +105,15 @@ class SpecificRecipeTableViewController: UITableViewController {
 
     }
     
-    override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+    /*override func tableView(tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         switch section {
         case 0: return "Ingredients"
         case 1: return "Instructions"
         default: return nil
         }
-    }
+    }*/
+    
+    //check marks for ingredients and instructions
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if let cell = tableView.cellForRowAtIndexPath(indexPath) as? IngredientTableViewCell {
             if cell.plusView.image == UIImage(named: "blue") {
@@ -129,42 +147,38 @@ class SpecificRecipeTableViewController: UITableViewController {
             tableView.reloadData()
         }
     }
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    //section view
+    override func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let sectionView = UIView(frame: CGRect(origin: CGPointZero, size: CGSize(width: self.view.bounds.width, height: 50)))
+        sectionView.backgroundColor = UIColor.whiteColor()
+        let sectionTitle = UILabel(frame: sectionView.bounds)
+        
+        switch section {
+        case 0: sectionTitle.text = "Ingredients"
+        default: sectionTitle.text = "Instructions"
+        }
+        sectionTitle.textColor = UIColor.blueColor()
+        sectionTitle.font = UIFont(name: "Snell Roundhand", size: 25)
+        sectionTitle.textAlignment = .Center
+        sectionView.addSubview(sectionTitle)
+        sectionView.layer.borderColor = self.color?.CGColor
+        sectionView.layer.borderWidth = 1
+        
+        return sectionView
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
-            // Delete the row from the data source
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+    
+    override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 50
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(tableView: UITableView, moveRowAtIndexPath fromIndexPath: NSIndexPath, toIndexPath: NSIndexPath) {
-
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        if indexPath.section == 0 {
+            return 60
+        }
+        else {
+            return UITableViewAutomaticDimension
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(tableView: UITableView, canMoveRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return NO if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
     
     // MARK: - Navigation
 
@@ -184,6 +198,7 @@ class SpecificRecipeTableViewController: UITableViewController {
         }
     }
     
+    //update all the stuff
     func updateUI() {
         title = recipe!["name"] as? String
         if let imageData = recipe!["recipeImage"] as? PFFile {
@@ -202,6 +217,11 @@ class SpecificRecipeTableViewController: UITableViewController {
         
         //Edit Button
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Edit",style: .Plain, target: self, action: "editRecipe")
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        //change fonts
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Snell Roundhand", size: 25)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
+
         
         //image
         let recipeImage = UIImage(data: data)
@@ -214,48 +234,84 @@ class SpecificRecipeTableViewController: UITableViewController {
         
         //view for details
         let origin = CGPoint(x: 0, y: self.view.bounds.size.width * aspectRatio)
-        let origin1 = CGPoint(x: self.view.bounds.size.width/2, y: self.view.bounds.size.width * aspectRatio)
-        let size = CGSize(width: self.view.bounds.size.width/2, height: 40)
+        let origin1 = CGPoint(x: self.view.bounds.size.width/3, y: self.view.bounds.size.width * aspectRatio)
+        let origin2 = CGPoint(x: 2 * self.view.bounds.size.width/3, y: self.view.bounds.size.width * aspectRatio)
+        let size = CGSize(width: self.view.bounds.size.width/3, height: 100)
         let timeFrame = CGRect(origin: origin, size: size)
         let serveFrame = CGRect(origin: origin1, size: size)
-        let timeView = UIView(frame: timeFrame)
-        timeView.backgroundColor = UIColor.orangeColor()
-        let serveView = UIView(frame: serveFrame)
-        serveView.backgroundColor = UIColor.greenColor()
+        let numberFrame = CGRect(origin: origin2, size: size)
+        
+        
+        let timeCircle = UIView(frame: timeFrame)
+        timeCircle.bounds.size = CGSize(width: 80, height: 80)
+        timeCircle.backgroundColor = UIColor.whiteColor()
+        timeCircle.clipsToBounds = true
+        timeCircle.layer.cornerRadius = timeCircle.bounds.size.width/2
+        timeCircle.layer.borderWidth = 1
+        timeCircle.layer.borderColor = color?.CGColor
+        
+        let serveCircle = UIView(frame: serveFrame)
+        serveCircle.bounds.size = CGSize(width: 80, height: 80)
+        serveCircle.backgroundColor = UIColor.whiteColor()
+        serveCircle.clipsToBounds = true
+        serveCircle.layer.cornerRadius = timeCircle.bounds.size.width/2
+        serveCircle.layer.borderWidth = 1
+        serveCircle.layer.borderColor = color?.CGColor
+        
+        let numberCircle = UIView(frame: numberFrame)
+        numberCircle.bounds.size = CGSize(width: 80, height: 80)
+        numberCircle.backgroundColor = UIColor.whiteColor()
+        numberCircle.clipsToBounds = true
+        numberCircle.layer.cornerRadius = timeCircle.bounds.size.width/2
+        numberCircle.layer.borderWidth = 1
+        numberCircle.layer.borderColor = color?.CGColor
+        
         
         //labels
-        let timeLabel = UILabel(frame: timeView.bounds)
+        let timeLabel = UILabel(frame: timeCircle.bounds)
         timeLabel.textAlignment = NSTextAlignment.Center
+        timeLabel.textColor = color
         let time = recipe!["time"] as! String
         timeLabel.text = "\(time)"
-        timeView.addSubview(timeLabel)
+        timeCircle.addSubview(timeLabel)
         
-        let serveLabel = UILabel(frame: serveView.bounds)
+        let serveLabel = UILabel(frame: serveCircle.bounds)
+        serveLabel.numberOfLines = 0
+        serveLabel.textColor = color
         serveLabel.textAlignment = NSTextAlignment.Center
         let serve = recipe!["servingSize"] as! Int
-        serveLabel.text = "\(serve) Serving Size"
-        serveView.addSubview(serveLabel)
+        serveLabel.text = "Serves\n\(serve)"
+        serveCircle.addSubview(serveLabel)
+        
+        let numberLabel = UILabel(frame: numberCircle.bounds)
+        numberLabel.numberOfLines = 0
+        numberLabel.textColor = color
+        numberLabel.textAlignment = NSTextAlignment.Center
+        let number = recipe!["ingredients"] as! [PFObject]
+        numberLabel.text = "\(number.count)\nItems"
+        numberCircle.addSubview(numberLabel)
         
         
         //headerView
-        let headerView = UIView(frame: CGRect(origin: CGPointZero, size: CGSize(width: imageView.bounds.size.width, height: imageView.bounds.size.height + timeView.bounds.size.height)))
+        let headerView = UIView(frame: CGRect(origin: CGPointZero, size: CGSize(width: imageView.bounds.size.width, height: imageView.bounds.size.height + timeFrame.height)))
         headerView.addSubview(imageView)
-        headerView.addSubview(timeView)
-        headerView.addSubview(serveView)
+        headerView.addSubview(serveCircle)
+        headerView.addSubview(timeCircle)
+        headerView.addSubview(numberCircle)
         self.tableView.tableHeaderView = headerView
         
         //cells
         self.tableView.estimatedRowHeight = 120
-        self.tableView.rowHeight = UITableViewAutomaticDimension
         tableView.reloadData()
     }
     
-    
+    //edit the recipe
     func editRecipe() {
         performSegueWithIdentifier("Edit Recipe", sender: self)
         
     }
     
+    //show description label
     func showDetails(sender: UIButton) {
         if detailOpenend  == false {
             detailOpenend = true
@@ -263,6 +319,8 @@ class SpecificRecipeTableViewController: UITableViewController {
             let backButton = UIButton(frame: CGRect(origin: CGPointZero, size: CGSize(width: sender.bounds.size.width, height: sender.bounds.size.height/4)))
             let visualEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .Light)) as UIVisualEffectView
             let detailText = UILabel(frame: backButton.frame)
+            detailText.numberOfLines = 0
+            detailText.minimumScaleFactor = 12
             detailText.textAlignment = .Center
             let description = recipe!["description"] as! String
             detailText.text = description
@@ -280,6 +338,7 @@ class SpecificRecipeTableViewController: UITableViewController {
 
     }
     
+    //get rid of description
     func deselect(sender: UIButton) {
         detailOpenend = false
         let superView = sender.superview

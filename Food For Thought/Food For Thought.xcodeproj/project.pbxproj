@@ -19,7 +19,6 @@
 		5F6F6BE81B2F7DBC007F8993 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5F6F6BE61B2F7DBC007F8993 /* LaunchScreen.storyboard */; };
 		5F6F6BF21B2F88AD007F8993 /* RecipeCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6BF11B2F88AD007F8993 /* RecipeCollectionViewController.swift */; };
 		5F6F6BF41B2F890B007F8993 /* RecipeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6BF31B2F890B007F8993 /* RecipeCollectionViewCell.swift */; };
-		5F6F6BF61B2F8A0B007F8993 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6BF51B2F8A0B007F8993 /* Recipe.swift */; };
 		5F6F6BFC1B2FB649007F8993 /* SpecificRecipeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6BFB1B2FB649007F8993 /* SpecificRecipeTableViewController.swift */; };
 		5F6F6C001B2FD1AA007F8993 /* IngredientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6BFF1B2FD1AA007F8993 /* IngredientTableViewCell.swift */; };
 		5F6F6C021B308ED6007F8993 /* InstructionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6F6C011B308ED6007F8993 /* InstructionsTableViewCell.swift */; };
@@ -36,7 +35,6 @@
 		5F6F6C2B1B309F30007F8993 /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C2A1B309F30007F8993 /* Social.framework */; };
 		5F6F6C301B30A33E007F8993 /* libz.1.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C2F1B30A33E007F8993 /* libz.1.dylib */; };
 		5F6F6C321B30A355007F8993 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F6F6C311B30A355007F8993 /* libsqlite3.dylib */; };
-		5F9B7A9B1B33AB090018827A /* NewAddRecipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F9B7A9A1B33AB090018827A /* NewAddRecipe.swift */; };
 		5FAF82971B30AA6900E0D63D /* Parse.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FAF82961B30AA6900E0D63D /* Parse.framework */; };
 		5FAF82991B30AA6F00E0D63D /* Bolts.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FAF82981B30AA6F00E0D63D /* Bolts.framework */; };
 		5FAF829B1B30AA7300E0D63D /* ParseCrashReporting.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5FAF829A1B30AA7300E0D63D /* ParseCrashReporting.framework */; };
@@ -60,7 +58,6 @@
 		5F6F6BE91B2F7DBC007F8993 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "Food For Thought/Info.plist"; sourceTree = "<group>"; };
 		5F6F6BF11B2F88AD007F8993 /* RecipeCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeCollectionViewController.swift; path = "Food For Thought/RecipeCollectionViewController.swift"; sourceTree = "<group>"; };
 		5F6F6BF31B2F890B007F8993 /* RecipeCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecipeCollectionViewCell.swift; path = "Food For Thought/RecipeCollectionViewCell.swift"; sourceTree = "<group>"; };
-		5F6F6BF51B2F8A0B007F8993 /* Recipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Recipe.swift; path = "Food For Thought/Recipe.swift"; sourceTree = "<group>"; };
 		5F6F6BFB1B2FB649007F8993 /* SpecificRecipeTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpecificRecipeTableViewController.swift; path = "Food For Thought/SpecificRecipeTableViewController.swift"; sourceTree = "<group>"; };
 		5F6F6BFF1B2FD1AA007F8993 /* IngredientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = IngredientTableViewCell.swift; path = "Food For Thought/IngredientTableViewCell.swift"; sourceTree = "<group>"; };
 		5F6F6C011B308ED6007F8993 /* InstructionsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InstructionsTableViewCell.swift; path = "Food For Thought/InstructionsTableViewCell.swift"; sourceTree = "<group>"; };
@@ -77,7 +74,6 @@
 		5F6F6C2A1B309F30007F8993 /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		5F6F6C2F1B30A33E007F8993 /* libz.1.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.dylib; path = /usr/lib/libz.1.dylib; sourceTree = "<absolute>"; };
 		5F6F6C311B30A355007F8993 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = /usr/lib/libsqlite3.dylib; sourceTree = "<absolute>"; };
-		5F9B7A9A1B33AB090018827A /* NewAddRecipe.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NewAddRecipe.swift; path = "Food For Thought/NewAddRecipe.swift"; sourceTree = "<group>"; };
 		5FAF82961B30AA6900E0D63D /* Parse.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Parse.framework; path = "../../../Downloads/parse-library-1/Parse.framework"; sourceTree = "<group>"; };
 		5FAF82981B30AA6F00E0D63D /* Bolts.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Bolts.framework; path = "../../../Downloads/parse-library-1/Bolts.framework"; sourceTree = "<group>"; };
 		5FAF829A1B30AA7300E0D63D /* ParseCrashReporting.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ParseCrashReporting.framework; path = "../../../Downloads/parse-library-1/ParseCrashReporting.framework"; sourceTree = "<group>"; };
@@ -122,7 +118,6 @@
 			children = (
 				5F6F6BF11B2F88AD007F8993 /* RecipeCollectionViewController.swift */,
 				5F6F6BF31B2F890B007F8993 /* RecipeCollectionViewCell.swift */,
-				5F6F6BF51B2F8A0B007F8993 /* Recipe.swift */,
 				5F6F6BFF1B2FD1AA007F8993 /* IngredientTableViewCell.swift */,
 				5F6F6C011B308ED6007F8993 /* InstructionsTableViewCell.swift */,
 				5F6F6BFB1B2FB649007F8993 /* SpecificRecipeTableViewController.swift */,
@@ -166,7 +161,6 @@
 		5F6F6BCF1B2F7DBC007F8993 = {
 			isa = PBXGroup;
 			children = (
-				5F9B7A9A1B33AB090018827A /* NewAddRecipe.swift */,
 				5F6F6BDA1B2F7DBC007F8993 /* Food For Thought */,
 				5F251F5F1B31F06700B6C196 /* My Recipes */,
 				5F251F651B32431F00B6C196 /* Add Recipe */,
@@ -292,14 +286,12 @@
 				5F6F6BF41B2F890B007F8993 /* RecipeCollectionViewCell.swift in Sources */,
 				5F6F6C021B308ED6007F8993 /* InstructionsTableViewCell.swift in Sources */,
 				5F6F6C001B2FD1AA007F8993 /* IngredientTableViewCell.swift in Sources */,
-				5F9B7A9B1B33AB090018827A /* NewAddRecipe.swift in Sources */,
 				5F251F5E1B31F05A00B6C196 /* AddRecipeTableViewController.swift in Sources */,
 				5F251F641B321C4000B6C196 /* NameTableViewCell.swift in Sources */,
 				5F6F6BDC1B2F7DBC007F8993 /* AppDelegate.swift in Sources */,
 				5F251F481B3132DA00B6C196 /* LoginViewController.swift in Sources */,
 				5F6F6BFC1B2FB649007F8993 /* SpecificRecipeTableViewController.swift in Sources */,
 				5F6F6BF21B2F88AD007F8993 /* RecipeCollectionViewController.swift in Sources */,
-				5F6F6BF61B2F8A0B007F8993 /* Recipe.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -423,7 +415,7 @@
 					/Users/SagarPunhani/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = "Food For Thought/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.usc.Food-For-Thought";
@@ -449,7 +441,7 @@
 					/Users/SagarPunhani/Documents/FacebookSDK,
 				);
 				INFOPLIST_FILE = "Food For Thought/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = "edu.usc.Food-For-Thought";

@@ -10,6 +10,7 @@ import UIKit
 import Parse
 
 class LoginViewController: UIViewController {
+    
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)

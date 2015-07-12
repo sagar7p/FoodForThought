@@ -13,28 +13,34 @@ private let reuseIdentifier = "Cell"
 
 class RecipeCollectionViewController: UICollectionViewController, UICollectionViewDelegateFlowLayout {
     
+    //modal for all recipes
     var allRecipes: [PFObject] = [] {
         willSet {
             collectionView!.reloadData()
         }
     }
     
+    //recipe to send to next mvc
     var currentRecipe = PFObject(className: "Recipe")
-
+    
+    //current user
+    let user = PFUser.currentUser()
+    
+    //set title and buttons and query for recipes
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
         title = "Recipe Collection"
-        navigationItem.backBarButtonItem = UIBarButtonItem(title: "Back", style: .Plain, target: nil, action: nil)
-        let user = PFUser.currentUser()
-        let query = PFQuery(className: "Recipe")
-        query.whereKey("user", equalTo: user!)
-        query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-            if error == nil {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.allRecipes = objects! as! [PFObject]
-                })
-            }
-        })
+        navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .Plain, target: nil, action: nil)
+        navigationItem.rightBarButtonItem = self.editButtonItem()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        
+        //change fonts
+        self.navigationController?.navigationBar.titleTextAttributes = [ NSFontAttributeName: UIFont(name: "Snell Roundhand", size: 25)!,  NSForegroundColorAttributeName: UIColor.whiteColor()]
+
+
+
+        findObjects()
+        
         
         /*let test1Recipe = PFObject(className: "Recipe")
         let test2Recipe = PFObject(className: "Recipe")
@@ -81,18 +87,10 @@ class RecipeCollectionViewController: UICollectionViewController, UICollectionVi
         // Do any additional setup after loading the view.
     }
     
+    //reload data whenever data appears
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        let user = PFUser.currentUser()
-        let query = PFQuery(className: "Recipe")
-        query.whereKey("user", equalTo: user!)
-        query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
-            if error == nil {
-                dispatch_async(dispatch_get_main_queue(), { () -> Void in
-                    self.allRecipes = objects! as! [PFObject]
-                })
-            }
-        })
+        findObjects()
         
     }
 
@@ -133,6 +131,8 @@ class RecipeCollectionViewController: UICollectionViewController, UICollectionVi
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Recipe", forIndexPath: indexPath) as! RecipeCollectionViewCell
         
         cell.recipe = self.allRecipes[indexPath.row]
+        cell.color = self.navigationController?.navigationBar.barTintColor
+        //cell.contentView.backgroundColor = self.navigationController?.navigationBar.barTintColor
         
         // Configure the cell
     
@@ -142,38 +142,30 @@ class RecipeCollectionViewController: UICollectionViewController, UICollectionVi
 
     // MARK: UICollectionViewDelegate
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
-    
-    }
-    */
-    
+    //deleting data when selected or performing segue
     override func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         currentRecipe = allRecipes[indexPath.row]
-        performSegueWithIdentifier("show recipe", sender: collectionView)
+        if editing {
+            let alert = UIAlertController(title: nil, message: nil, preferredStyle: UIAlertControllerStyle.ActionSheet)
+            
+            alert.addAction(UIAlertAction(title: "Delete", style: UIAlertActionStyle.Destructive, handler: { (action: UIAlertAction! ) -> Void in
+                //self.collectionView?.deleteItemsAtIndexPaths([indexPath])
+                let object = self.allRecipes[indexPath.row]
+                self.allRecipes.removeAtIndex(indexPath.row)
+                object.deleteEventually()
+                collectionView.reloadData()
+            }))
+            alert.addAction(UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (action: UIAlertAction!) -> Void in
+                //do nothing
+            }))
+            
+            alert.modalPresentationStyle = .Popover
+            presentViewController(alert, animated: true, completion: nil)
+        }
+        else {
+            performSegueWithIdentifier("show recipe", sender: collectionView)
+        }
+        
     }
     
     func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAtIndex section: Int) -> UIEdgeInsets {
@@ -184,6 +176,25 @@ class RecipeCollectionViewController: UICollectionViewController, UICollectionVi
         let screenWidth = view.bounds.size.width
         return CGSize(width: screenWidth/2.5, height: screenWidth/2.5)
     }
+    
+    //query database for objects
+    func findObjects() {
+        let query = PFQuery(className: "Recipe")
+        query.whereKey("user", equalTo: user!)
+        query.findObjectsInBackgroundWithBlock({ (objects, error) -> Void in
+            if error == nil {
+                dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                    self.allRecipes = objects! as! [PFObject]
+                })
+            }
+        })
+    }
+    
+    //log out
    
+    @IBAction func logOut(sender: UIBarButtonItem) {
+        PFUser.logOut()
+        performSegueWithIdentifier("log out", sender: nil)
+    }
 
 }
